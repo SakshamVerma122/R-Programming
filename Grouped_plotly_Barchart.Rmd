@@ -1,0 +1,67 @@
+```{r}
+library(plotly)
+library(dplyr)
+library(ggplot2)
+library(datasets)
+```
+
+```{r}
+data <- msleep
+```
+
+```{r}
+View(data)
+```
+
+```{r}
+carnidata <- filter(data,vore =="carni")
+```
+
+```{r}
+omnidata <- filter(data,vore =="omni")
+```
+
+```{r}
+View(carnidata)
+```
+
+```{r}
+carnidata %>% count(conservation)
+```
+```{r}
+omnidata %>% count(conservation)
+```
+
+```{r}
+### Inner join ###
+df = merge(x=omnidata %>% count(conservation),y=carnidata %>% count(conservation),by="conservation")
+```
+
+```{r}
+df
+```
+```{r}
+df <- df %>% 
+  rename(
+    Omni = n.x,
+    Carni = n.y
+    )
+```
+
+```{r}
+df
+```
+
+```{r}
+fig_bar <- plot_ly(data=df,type="bar",x=~conservation,y=~Omni,name="Omni")
+fig_bar <- fig_bar%>% add_trace(y=~Carni,name="Carni")
+fig_bar <- fig_bar%>%layout(barmode='stack')
+fig_bar
+```
+
+```{r}
+fig_bar <- plot_ly(data=df,type="bar",x=~conservation,y=~Omni,name="Omni")
+fig_bar <- fig_bar%>% add_trace(y=~Carni,name="Carni")
+fig_bar <- fig_bar%>%layout(barmode='group')
+fig_bar
+```

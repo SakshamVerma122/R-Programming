@@ -1,0 +1,191 @@
+```{r}
+help.search('median')
+```
+
+```{r}
+str(iris) 
+#Get a summary of an object’s structure.
+
+print("The class to which iris belongs to")
+class(iris)
+#Find the class an object belongs to.
+```
+
+```{r}
+install.packages('dplyr')
+#Download and install a package from CRAN.
+
+library(dplyr)
+#Load the package into the session, making all its functions available to use.
+
+dplyr::select
+#Use a particular function from a package.
+
+data(iris)
+#Load a built-in dataset into the environment
+
+```
+
+```{r}
+##### Working with WOrking directories ############
+
+
+getwd()
+#Find the current working directory (where inputs are found and outputs are sent).
+
+#setwd(‘C://file/path’)
+#Change the current working directory
+```
+```{r}
+################ DATATYPES ###################
+class()
+# what kind of object is it (high-level)?
+
+typeof()
+# what is the object’s data type (low-level)?
+
+length()
+# how long is it? What about two dimensional objects?
+
+attributes()
+# does it have any metadata?
+```
+```{r}
+x <- "dataset"
+print("Type of x:")
+typeof(x)
+
+print("Checking whether x contains any meta data")
+attributes(x)
+
+# Making an if-else condition based on checking of metadata
+if(is.null(attributes(x)))
+  print("It doesn't contains any meta data")
+
+y <- 1:10
+print(y)
+
+print("Type of y:")
+typeof(y)
+
+print("Length of y")
+length(y)
+
+z <- as.numeric(y)
+print(z)
+
+print("Type of z:")
+typeof(z)
+```
+
+```{r}
+k<-c(1,0,1,3,3,3,4)
+
+print(as.logical(k))
+
+print(as.numeric(k))
+
+print(as.character(k))
+
+print(as.factor(k))
+
+```
+
+```{r}
+vector()
+# an empty 'logical' (the default) vector
+
+logical(0)
+
+vector("character", length = 5)
+# a vector of mode 'character' with 5 elements
+
+character(5)
+# the same thing, but using the constructor directly
+
+numeric(5)
+# a numeric vector with 5 elements
+
+logical(5)
+
+# You can also create vectors by directly specifying their content. R will then guess the appropriate mode of storage for the vector. For instance:
+
+x <- c(1, 2, 3)
+
+# Will create a vector x of mode numeric. These are the most common kind, and are treated as douint()ble precision real numbers.
+
+# If you wanted to explicitly create integers, you need to add an L to each element (or coerce to the integer type using as.integer()).
+
+x1 <- c(1L, 2L, 3L)
+print(typeof(x1))
+#Using TRUE and FALSE will create a vector of mode logical:
+
+y <- c(TRUE, TRUE, FALSE, FALSE)
+print(typeof(y))
+# While using quoted text will create a vector of mode character:
+
+z <- c("Sarah", "Tracy", "Jon")
+print(typeof(z))
+
+# Examining Vectors
+#The functions typeof(), length(), class() and str() provide useful information about your vectors and R objects in general.
+
+typeof(z)
+
+length(z)
+
+class(z)
+
+str(z)
+
+########Adding Elements##########
+
+#The function c()-->(for combine) can also be used to add elements to a vector.
+
+## Adding element to the start
+z <- c(z, "Annette")
+print("Z=",z)
+
+## Adding element to the end
+z <- c("Greg", z)
+print(z)
+
+# Vectors from a Sequence of Numbers
+# You can create vectors as a sequence of numbers.
+
+series <- 1:10
+print("SERIES<-1:10 = ",series)
+
+seq(10)
+
+seq(from = 1, to = 10, by = 0.1)
+ 
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```

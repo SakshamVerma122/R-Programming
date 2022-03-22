@@ -1,0 +1,55 @@
+
+```{r}
+######## Histogram ########
+```
+
+```{r}
+library(plotly)
+library(dplyr)
+library(datasets)
+library(ggplot2)
+
+data <-msleep
+```
+
+```{r}
+hist<-plot_ly(data=msleep,x=~sleep_rem,type="histogram",marker=list(color="yellow"))%>%layout(title="Histogram for Sleep rem")
+hist
+```
+
+```{r}
+#### Pie chart #####
+```
+
+```{r}
+## Finding count table ##
+plotdata <- msleep%>%count(order)
+print(plotdata)
+```
+
+```{r}
+piechart <- plot_ly(plotdata) %>%add_pie(plotdata, labels = ~order, values = ~n)
+piechart
+```
+
+```{r}
+#### Donut chart ####
+```
+
+```{r}
+plot_ly(plotdata) %>%
+  add_pie(plotdata, labels = ~order, values = ~n,
+         type = 'pie', hole = 0.5)
+```
+
+```{r}
+#### Box plot ####
+```
+
+```{r}
+library(plotly)
+fig <- plot_ly(msleep,y = ~sleep_total, type = "box",name = "Sleep total")
+fig <- fig %>% add_trace(y = ~sleep_rem,name = "Sleep rem")
+
+fig
+```

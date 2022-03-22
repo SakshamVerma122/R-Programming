@@ -1,0 +1,105 @@
+```{r}
+library(readr)
+Salaries <- read_csv("pokemon.csv")
+
+# Salaries <-read_tsv("Salaries.txt") --> Tab seperated
+
+# import data from an Excel workbook
+# library(readxl)
+# Salaries <-read_excel("salaries.xlsx",sheet=1)
+
+
+#########importing data from a variety of statistical packages.#######
+
+#library(haven)
+
+# import data from Stata
+# Salaries <- read_dta("salaries.dta")
+
+# import data from SPSS
+# Salaries <- read_sav("salaries.sav")
+
+# import data from SAS
+# Salaries <- read_sas("salaries.sas7bdat")
+print(typeof(Salaries))
+```
+```{r}
+####### Databases ########
+Importing data from a database requires additional steps and is beyond the scope of this book. Depending on
+the database containing the data, the following packages can help: RODBC, RMySQL, ROracle, RPostgreSQL,
+RSQLite, and RMongo.
+```
+
+
+```{r}
+########### Selecting variables #########
+
+### IMPORTANT ###
+# Select main use is to take columns 
+
+library(dplyr)
+# Starwars dataset is inside dplyr
+data(starwars)
+
+View(starwars)
+
+# keep the variables name, height, and gender
+newdata <- select(starwars, name, height, gender)
+print(newdata)
+
+# keep the variables name and all variables
+# between mass and species inclusive
+newdata <- select(starwars, name, mass:species)
+print(newdata)
+
+# keep all variables except birth_year and gender
+newdata <- select(starwars, -birth_year, -gender)
+print(newdata)
+```
+```{r}
+# Filter main use is to take rows
+print(typeof(starwars))
+```
+```{r}
+filter(starwars,gender == "masculine" & homeworld =="Tatooine" )
+
+filter(starwars,homeworld == "Tatooine" | homeworld == "Alderaan" | homeworld == "Kashyyyk")
+
+# this can be written more succinctly as
+
+filter(starwars,homeworld %in% c("Tatooine","Alderaan" ,"Kashyyyk"))
+```
+
+```{r}
+# convert height in centimeters to inches,
+# and mass in kilograms to pounds
+newdata <- mutate(starwars,height = height * 0.394,mass = mass * 2.205)
+
+
+#The ifelse function (part of base R) can be used for recoding data. 
+
+## FORMAT is ifelse(test, returnif TRUE, return if FALSE).
+library(dplyr)
+# if height is greater than 180
+# then heightcat = "tall",
+# otherwise heightcat = "short"
+newdata <- mutate(starwars,
+heightcat = ifelse(height > 180,
+"tall",
+"short")
+
+# convert any eye color that is not
+# black, blue or brown, to other
+newdata <- mutate(starwars,
+eye_color = ifelse(eye_color %in% c("black", "blue", "brown"),
+eye_color,
+"other")
+
+# set heights greater than 200 or
+# less than 75 to missing
+newdata <- mutate(starwars,
+height = ifelse(height < 75 | height > 200,
+NA,
+height)
+```
+
